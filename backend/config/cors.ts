@@ -8,7 +8,8 @@ import { defineConfig } from '@adonisjs/cors'
  */
 const corsConfig = defineConfig({
   enabled: true,
-  origin: true,
+  // Permite requisições do frontend via Nginx
+  origin: ['https://localhost', 'http://localhost', 'https://localhost:8080'],
   methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE'],
   headers: true,
   exposeHeaders: [],
