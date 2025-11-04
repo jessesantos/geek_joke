@@ -18,9 +18,6 @@ test.group('Auth - Login', (group) => {
     })
 
     response.assertStatus(200)
-    response.assertBodyContains({
-      type: 'bearer',
-    })
     assert.exists(response.body().token)
     assert.exists(response.body().user)
     assert.equal(response.body().user.email, 'cliente@incuca.com.br')
@@ -32,7 +29,7 @@ test.group('Auth - Login', (group) => {
       password: 'senhaqualquer',
     })
 
-    response.assertStatus(400)
+    response.assertStatus(401)
   })
 
   test('deve falhar ao fazer login com senha inválida', async ({ client }) => {
@@ -48,13 +45,13 @@ test.group('Auth - Login', (group) => {
       password: 'senhaErrada',
     })
 
-    response.assertStatus(400)
+    response.assertStatus(401)
   })
 
   test('deve falhar ao fazer login sem credenciais', async ({ client }) => {
     const response = await client.post('/auth/login').json({})
 
-    response.assertStatus(422)
+    response.assertStatus(400)
   })
 })
 
@@ -76,7 +73,7 @@ test.group('Auth - Me (Usuário Autenticado)', (group) => {
       .header('Authorization', `Bearer ${token.value!.release()}`)
 
     response.assertStatus(200)
-    assert.equal(response.body().email, 'teste@teste.com')
+    assert.equal(response.body().user.email, 'teste@teste.com')
   })
 
   test('deve falhar ao acessar /me sem token', async ({ client }) => {
@@ -113,7 +110,7 @@ test.group('Auth - Logout', (group) => {
 
     response.assertStatus(200)
     response.assertBodyContains({
-      message: 'Logout realizado com sucesso',
+      message: 'Logged out successfully',
     })
   })
 

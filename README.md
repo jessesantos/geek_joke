@@ -9,16 +9,16 @@
 - [Visão Geral](#-visão-geral)
 - [Metodologia de Desenvolvimento](#-metodologia-de-desenvolvimento)
 - [Stack Tecnológica](#-stack-tecnológica)
-- [Arquitetura](#-arquitetura)
+- [Defesa da Arquitetura](#-defesa-da-arquitetura)
+- [Arquitetura do Sistema](#-arquitetura-do-sistema)
 - [Funcionalidades](#-funcionalidades)
 - [Pré-requisitos](#-pré-requisitos)
 - [Instalação e Execução](#-instalação-e-execução)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Credenciais de Acesso](#-credenciais-de-acesso)
 - [Endpoints da API](#-endpoints-da-api)
-- [Roadmap](#-roadmap)
+- [Testes](#-testes)
 - [Contribuindo](#-contribuindo)
-- [Licença](#-licença)
 
 ---
 
@@ -26,13 +26,14 @@
 
 Este projeto é uma **Single Page Application (SPA)** que demonstra a integração entre um frontend moderno (Vue.js) e um backend robusto (AdonisJS), implementando:
 
-- ✅ **Autenticação JWT** com persistência de sessão
+- ✅ **Autenticação com Access Tokens** (stateful, mais seguro que JWT puro)
 - ✅ **Integração com API externa** (Geek Joke API)
 - ✅ **Roteamento dinâmico** baseado em estados de humor
 - ✅ **Gerenciamento de estado** com Pinia
 - ✅ **Containerização completa** com Docker e Docker Compose
 - ✅ **Proxy reverso** com Nginx e SSL/TLS
 - ✅ **Testes unitários e de integração**
+- ✅ **Validação robusta** com VineJS Validators
 
 ### 🎭 Fluxo de Interação
 
@@ -48,18 +49,12 @@ Cada clique na tela muda o estado de humor, criando uma experiência interativa 
 
 ### Documentation-Driven Development (DDD)
 
-Este projeto foi desenvolvido seguindo a metodologia **Documentation-Driven Development**, uma abordagem moderna que coloca a **documentação no centro do processo de desenvolvimento**.
-
-#### 🤔 O que é Documentation-Driven Development?
-
-**Documentation-Driven Development** é uma metodologia de desenvolvimento de software onde:
+Este projeto foi desenvolvido seguindo a metodologia **Documentation-Driven Development**, uma abordagem moderna onde:
 
 1. **A documentação é escrita PRIMEIRO**, antes de qualquer linha de código
 2. **Os requisitos são detalhados** em documentos técnicos estruturados
 3. **O código é implementado** seguindo fielmente a documentação
 4. **A documentação é mantida atualizada** durante todo o ciclo de vida
-
-É similar ao **Test-Driven Development (TDD)**, mas focado em especificações e arquitetura ao invés de testes.
 
 #### ✨ Princípios Fundamentais
 
@@ -67,75 +62,44 @@ Este projeto foi desenvolvido seguindo a metodologia **Documentation-Driven Deve
 📝 DOCUMENTAR → 🔍 REVISAR → 💻 IMPLEMENTAR → ✅ VALIDAR → 🔄 ITERAR
 ```
 
-1. **Doc First**: Escrever especificações detalhadas antes de codificar
-2. **Single Source of Truth**: Documentação é a fonte oficial de requisitos
-3. **Incremental**: Documentar e implementar em pequenos incrementos
-4. **Living Documentation**: Documentação evolui com o projeto
-5. **AI-Friendly**: Ideal para desenvolvimento assistido por LLMs
-
-#### 🚀 Vantagens do DDD
+#### 🚀 Vantagens do Documentation-Driven Development
 
 | Vantagem | Descrição |
 |----------|-----------|
-| 🎯 **Clareza de Requisitos** | Todos os requisitos são definidos antes de codificar, reduzindo ambiguidade |
-| 🤝 **Melhor Comunicação** | Documentação clara facilita alinhamento entre stakeholders |
-| ⚡ **Menos Retrabalho** | Especificações detalhadas evitam implementações incorretas |
-| 📖 **Documentação Sempre Atualizada** | A documentação é parte do processo, não uma tarefa posterior |
-| 🎓 **Onboarding Facilitado** | Novos desenvolvedores entendem o projeto rapidamente |
-| 🤖 **Otimizado para IA/LLM** | LLMs como Claude podem implementar código seguindo specs detalhadas |
-| 🧪 **Testabilidade** | Requisitos claros facilitam criação de testes |
-| 🏗️ **Arquitetura Consistente** | Decisões arquiteturais são documentadas e seguidas |
-| 📊 **Rastreabilidade** | Fácil rastrear de código para requisito e vice-versa |
-| 💰 **Redução de Custos** | Menor custo de manutenção a longo prazo |
+| 🎯 **Clareza de Requisitos** | Requisitos definidos antes de codificar reduzem ambiguidade e retrabalho |
+| 🤝 **Melhor Comunicação** | Documentação clara facilita alinhamento entre stakeholders técnicos e não-técnicos |
+| ⚡ **Menos Retrabalho** | Especificações detalhadas evitam implementações incorretas e bugs conceituais |
+| 📖 **Documentação Atualizada** | A documentação é parte do processo, não uma tarefa posterior negligenciada |
+| 🎓 **Onboarding Facilitado** | Novos desenvolvedores entendem o projeto rapidamente sem depender de tribal knowledge |
+| 🤖 **Otimizado para IA/LLM** | LLMs como Claude podem implementar código seguindo especificações detalhadas com alta precisão |
+| 🧪 **Testabilidade** | Requisitos claros facilitam criação de testes abrangentes e significativos |
+| 🏗️ **Arquitetura Consistente** | Decisões arquiteturais são documentadas, justificadas e seguidas consistentemente |
+| 📊 **Rastreabilidade** | Fácil rastrear código para requisito e vice-versa, essencial para auditorias |
+| 💰 **Redução de Custos** | Menor custo de manutenção a longo prazo devido à clareza e consistência |
 
-#### 🛠️ Como Aplicamos DDD Neste Projeto
+#### 💡 Por que DDD é superior ao desenvolvimento tradicional?
 
-1. **REQUISITOS.md**: Especificação completa dos requisitos funcionais e não-funcionais
-2. **TO_DO.md**: Plano de implementação dividido em fases com tarefas atômicas
-3. **README.md**: Documentação de alto nível e guia de uso
-4. **Comentários de Código**: Decisões técnicas documentadas no próprio código
-5. **API Documentation**: Endpoints documentados com exemplos
-6. **Schema Documentation**: Estrutura de banco documentada
-
-#### 📐 Workflow DDD Aplicado
-
-```mermaid
-graph LR
-    A[📝 Escrever Requisitos] --> B[📋 Criar TO-DO]
-    B --> C[🔍 Revisar com Stakeholders]
-    C --> D[💻 Implementar Fase]
-    D --> E[✅ Validar contra Spec]
-    E --> F{Conforme?}
-    F -->|Sim| G[📝 Atualizar Docs]
-    F -->|Não| D
-    G --> H{Última Fase?}
-    H -->|Não| B
-    H -->|Sim| I[🎉 Projeto Completo]
+**Desenvolvimento tradicional:**
+```
+Código → Documentação (se sobrar tempo) → Manutenção difícil
 ```
 
-#### 🎓 Comparação com Outras Metodologias
+**Documentation-Driven Development:**
+```
+Requisitos → Design → Documentação → Código → Validação → Manutenção facilitada
+```
 
-| Metodologia | Foco Principal | Quando Usar |
-|-------------|----------------|-------------|
-| **TDD** | Testes primeiro | Lógica complexa, algoritmos críticos |
-| **BDD** | Comportamento do usuário | Features orientadas a negócio |
-| **DDD (Domain)** | Modelagem de domínio | Sistemas complexos com regras de negócio |
-| **Documentation-DDD** | Especificações detalhadas | Projetos com múltiplos stakeholders, desenvolvimento assistido por IA |
+#### 🌟 Desenvolvimento Moderno com IA
 
-#### 💡 Quando Usar Documentation-Driven Development?
+Documentation-Driven Development é **especialmente poderoso quando combinado com LLMs**:
 
-✅ **Ideal para:**
-- Projetos com equipes distribuídas
-- Desenvolvimento assistido por IA/LLM
-- Projetos open-source
-- Sistemas com requisitos complexos
-- Projetos que requerem auditoria/compliance
-- Onboarding frequente de novos desenvolvedores
+1. **Especificações claras** → LLMs geram código preciso
+2. **Documentação estruturada** → LLMs entendem contexto completo
+3. **Requisitos atômicos** → LLMs implementam incrementalmente
+4. **Validação contra specs** → LLMs verificam conformidade
+5. **Refatoração segura** → LLMs mantêm comportamento esperado
 
-⚠️ **Menos adequado para:**
-- MVPs ultra-rápidos (onde velocidade > qualidade)
-- Projetos descartáveis/experimentos
-- Projetos com requisitos extremamente voláteis
+**Este projeto foi desenvolvido inteiramente seguindo DDD + Claude Sonnet 4.5**, demonstrando o poder dessa combinação.
 
 ---
 
@@ -143,47 +107,104 @@ graph LR
 
 ### Backend
 
-| Tecnologia | Versão | Função |
-|-----------|---------|---------|
-| **Node.js** | 22.x | Runtime JavaScript |
-| **AdonisJS** | 6.x | Framework MVC full-featured |
-| **Lucid ORM** | 20.x | Object-Relational Mapping |
-| **PostgreSQL** | 18.x | Banco de dados relacional |
-| **JWT** | - | Autenticação stateless |
-| **Axios** | 1.x | Cliente HTTP para consumir API externa |
+| Tecnologia | Versão | Função | Por que escolhemos? |
+|-----------|---------|---------|---------------------|
+| **Node.js** | 22.x | Runtime JavaScript | Performance excepcional, ecossistema maduro, TypeScript nativo |
+| **AdonisJS** | 6.x | Framework MVC | Framework completo, ORM integrado, segurança built-in |
+| **Lucid ORM** | 20.x | Object-Relational Mapping | Active Record elegante, migrations robustas |
+| **PostgreSQL** | 18.x | Banco de dados relacional | ACID completo, performance superior, extensível |
+| **Access Tokens** | - | Autenticação stateful | Mais seguro que JWT: revogação imediata, auditoria |
+| **VineJS** | - | Validação de dados | Type-safe, nativo do AdonisJS |
+| **Axios** | 1.x | Cliente HTTP | API clara, interceptors, timeout |
 
 ### Frontend
 
-| Tecnologia | Versão | Função |
-|-----------|---------|---------|
-| **Vue.js** | 3.x | Framework JavaScript reativo |
-| **Vite** | 5.x | Build tool e dev server |
-| **Pinia** | 2.x | State management |
-| **Vue Router** | 4.x | Roteamento SPA |
-| **Vuetify** | 3.x | UI Component Library |
-| **Axios** | 1.x | Cliente HTTP |
+| Tecnologia | Versão | Função | Por que escolhemos? |
+|-----------|---------|---------|---------------------|
+| **Vue.js** | 3.x | Framework JavaScript | Composition API moderna, performance, TypeScript |
+| **Vite** | 5.x | Build tool | HMR instantâneo, build otimizado, DX excepcional |
+| **Pinia** | 2.x | State management | API simples, TypeScript, substituto oficial do Vuex |
+| **Vue Router** | 4.x | Roteamento SPA | Guards de navegação, lazy loading |
+| **Vuetify** | 3.x | UI Component Library | Material Design 3, componentes prontos |
+| **Axios** | 1.x | Cliente HTTP | Interceptors para token, erro centralizado |
 
 ### DevOps & Infraestrutura
 
-| Tecnologia | Versão | Função |
-|-----------|---------|---------|
-| **Docker** | 24.x | Containerização |
-| **Docker Compose** | 2.x | Orquestração de containers |
-| **Nginx** | latest | Reverse proxy e SSL termination |
-| **mkcert** | - | Certificados SSL locais |
-
-### Qualidade de Código
-
-| Tecnologia | Versão | Função |
-|-----------|---------|---------|
-| **ESLint** | 8.x | Linting JavaScript/TypeScript |
-| **Prettier** | 3.x | Formatação de código |
-| **Jest** | 29.x | Framework de testes |
-| **TypeScript** | 5.x | Tipagem estática (opcional) |
+| Tecnologia | Versão | Função | Por que escolhemos? |
+|-----------|---------|---------|---------------------|
+| **Docker** | 24.x | Containerização | Ambiente consistente, portabilidade, CI/CD |
+| **Docker Compose** | 2.x | Orquestração | Definição declarativa, networks isoladas |
+| **Nginx** | latest | Reverse proxy | Performance, SSL termination, load balancing |
+| **mkcert** | - | Certificados SSL locais | HTTPS local sem warnings |
 
 ---
 
-## 🏗️ Arquitetura
+## 🏛️ Defesa da Arquitetura
+
+### Por que AdonisJS ao invés de Express/NestJS?
+
+**AdonisJS vs Express:**
+- ✅ Framework completo vs biblioteca minimalista
+- ✅ ORM integrado (Lucid) vs precisa adicionar Sequelize/TypeORM
+- ✅ Autenticação nativa vs implementar do zero
+- ✅ Validação nativa (VineJS) vs adicionar Joi/Yup
+- ✅ TypeScript first vs adicionar tipos manualmente
+
+**AdonisJS vs NestJS:**
+- ✅ Curva de aprendizado menor vs complexidade de decorators
+- ✅ Menos boilerplate vs código verbose
+- ✅ ORM mais simples (Lucid) vs TypeORM complexo
+- ✅ Filosofia Rails-like vs Angular-like
+
+### Por que Vue.js ao invés de React/Angular?
+
+**Vue.js vs React:**
+- ✅ Curva de aprendizado menor - HTML, CSS, JS separados
+- ✅ Composition API mais intuitiva que React Hooks
+- ✅ Reatividade nativa vs useState/useEffect manual
+- ✅ Single File Components vs JSX misturado
+
+**Vue.js vs Angular:**
+- ✅ Mais leve (40KB) vs Angular (500KB+)
+- ✅ Setup mais simples vs configuração complexa
+- ✅ Vite build mais rápido que Angular CLI
+
+### Por que PostgreSQL ao invés de MySQL/MongoDB?
+
+**PostgreSQL vs MySQL:**
+- ✅ ACID completo e confiável
+- ✅ Tipos de dados avançados (JSON, Arrays, HSTORE)
+- ✅ Window functions e CTEs mais poderosos
+- ✅ Licença open-source verdadeira (não Oracle)
+
+**PostgreSQL vs MongoDB:**
+- ✅ ACID transactions vs consistência eventual
+- ✅ Schema validation vs schema-less problemático
+- ✅ Joins eficientes vs múltiplas queries
+- ✅ Suporte JSON nativo - melhor dos dois mundos
+
+### Por que Access Tokens ao invés de JWT Stateless?
+
+| Aspecto | Access Tokens (Stateful) | JWT Stateless |
+|---------|-------------------------|---------------|
+| **Revogação** | ✅ Imediata (deleta do banco) | ❌ Impossível até expirar |
+| **Auditoria** | ✅ Last used, IP, device | ❌ Sem rastreamento |
+| **Tamanho** | ✅ Pequeno (token ID) | ❌ Grande (payload codificado) |
+| **Sessões ativas** | ✅ Listagem no banco | ❌ Impossível listar |
+| **Segurança** | ✅ Compromisso isolado | ⚠️ Compromisso até expirar |
+
+**Nossa escolha**: Access Tokens
+
+**Justificativa**:
+- Segurança > Escalabilidade prematura
+- Auditoria é crítica (compliance, LGPD)
+- Revogação imediata é requisito (logout, compromisso)
+- Banco já existe (PostgreSQL), overhead é mínimo
+- Cache pode otimizar (Redis) se necessário no futuro
+
+---
+
+## 🏗️ Arquitetura do Sistema
 
 ### Diagrama de Arquitetura
 
@@ -192,66 +213,80 @@ graph LR
 │                       USUÁRIO                            │
 │                    (Navegador)                           │
 └────────────────────┬────────────────────────────────────┘
-                     │ HTTPS
+                     │ HTTPS (TLS 1.2/1.3)
                      ▼
 ┌─────────────────────────────────────────────────────────┐
 │                  NGINX PROXY                             │
-│              (SSL Termination)                           │
+│              (Reverse Proxy + SSL)                       │
 │    • Porta 80 → 443 (redirect)                          │
-│    • Porta 443 (SSL/TLS)                                │
+│    • Porta 443 (SSL/TLS termination)                    │
 └──────────┬──────────────────────┬───────────────────────┘
            │                      │
            │ /                    │ /api/*
            ▼                      ▼
 ┌──────────────────┐    ┌──────────────────────────────┐
 │   FRONTEND       │    │       BACKEND                │
-│   (Vue.js)       │    │       (AdonisJS)             │
+│   (Vue.js SPA)   │    │       (AdonisJS)             │
 │   Porta: 5173    │    │       Porta: 3333            │
 │                  │    │                              │
 │   • Pinia Store  │    │   • Controllers              │
-│   • Vue Router   │    │   • Models (Lucid)           │
+│   • Vue Router   │    │   • Models (Lucid ORM)       │
 │   • Vuetify UI   │◄───┤   • Middleware (Auth)        │
-│   • Axios        │────┤   • Services                 │
+│   • Axios HTTP   │────┤   • Services (Business)      │
+│   • Guards       │    │   • Validators (VineJS)      │
 └──────────────────┘    └───────┬──────────────────────┘
-                                │
+                                │ Lucid ORM
                                 ▼
                     ┌───────────────────────┐
                     │   POSTGRESQL          │
                     │   Porta: 5432         │
-                    │   • Tabela users      │
-                    │   • Tabela tokens     │
+                    │                       │
+                    │   • users             │
+                    │   • auth_access_tokens│
                     └───────────────────────┘
-                                │
+                                │ HTTP
                                 ▼
                     ┌───────────────────────┐
                     │   API EXTERNA         │
                     │   Geek Jokes API      │
-                    │   (geek-jokes.*)      │
                     └───────────────────────┘
 ```
 
-### Fluxo de Autenticação
+### Fluxo de Autenticação (Access Tokens)
 
 ```
 1. User → POST /api/auth/login → Backend
-2. Backend valida credenciais no PostgreSQL
-3. Backend gera JWT token
-4. Frontend armazena token no localStorage
-5. Requisições subsequentes incluem: Authorization: Bearer <token>
-6. Middleware valida token antes de processar requisição
+2. Backend valida credenciais no PostgreSQL (Scrypt hash)
+3. Backend gera Access Token e salva na tabela auth_access_tokens
+4. Backend retorna token + dados do usuário
+5. Frontend armazena token no localStorage
+6. Requisições subsequentes incluem: Authorization: Bearer <token>
+7. Middleware valida token consultando banco de dados
+8. Request processado e resposta retornada
 ```
 
-### Fluxo de Piadas
+**Vantagens deste fluxo:**
+- ✅ Revogação instantânea (delete token do banco)
+- ✅ Auditoria completa (last_used_at, expires_at)
+- ✅ Gerenciamento de sessões ativas
+- ✅ Segurança superior (compromisso isolado)
 
-```
-1. User clica na tela (estado poker-face)
-2. Frontend → GET /api/jokes/random (com JWT)
-3. Backend valida token
-4. Backend → GET https://geek-jokes.sameerkumar.website/api
-5. API externa retorna piada
-6. Backend retorna piada ao Frontend
-7. Frontend exibe piada em modal
-```
+### Padrões de Arquitetura Aplicados
+
+#### Backend (AdonisJS)
+- **MVC (Model-View-Controller)**: Separação clara de responsabilidades
+- **Service Layer**: Lógica de negócio isolada (GeekJokeService)
+- **Repository Pattern**: Lucid ORM abstrai acesso a dados
+- **Middleware Pattern**: Autenticação, CORS, Body Parser
+- **Validator Pattern**: VineJS para validação de entrada
+- **Dependency Injection**: AdonisJS IoC container
+
+#### Frontend (Vue.js)
+- **MVVM (Model-View-ViewModel)**: Reatividade Vue
+- **Store Pattern**: Pinia para estado global (auth, mood)
+- **Component Pattern**: Componentes reutilizáveis
+- **Composition API**: Lógica reusável e type-safe
+- **Guard Pattern**: Router guards para proteção de rotas
 
 ---
 
@@ -259,11 +294,12 @@ graph LR
 
 ### Implementadas
 
-- ✅ **Autenticação JWT**
+- ✅ **Autenticação Stateful**
   - Login com email e senha
-  - Validação de formulário
+  - Validação de formulário (frontend + backend)
   - Persistência de sessão (localStorage)
   - Proteção de rotas via middleware
+  - Logout com revogação de token
 
 - ✅ **Estados de Humor Interativos**
   - `/inicial` - Estado neutro 😐
@@ -273,24 +309,23 @@ graph LR
 
 - ✅ **Sistema de Piadas**
   - Consumo da API Geek Joke
-  - Exibição em modal interativa
-  - Cache de requisições (opcional)
+  - Modal interativa
+  - Tratamento de erros
 
 - ✅ **Infraestrutura**
-  - Docker e Docker Compose configurados
-  - Nginx com SSL/TLS
-  - PostgreSQL com persistência de dados
-  - Health checks nos containers
+  - Docker e Docker Compose
+  - Nginx com SSL/TLS (HTTPS)
+  - PostgreSQL com persistência
+  - Health checks
 
-### Roadmap Futuro
-
-- [ ] Histórico de piadas visualizadas
-- [ ] Sistema de favoritos
-- [ ] Compartilhamento de piadas em redes sociais
-- [ ] Modo escuro/claro
-- [ ] Internacionalização (i18n)
-- [ ] PWA (Progressive Web App)
-- [ ] Testes E2E com Cypress/Playwright
+- ✅ **Segurança**
+  - HTTPS obrigatório
+  - CORS configurado
+  - Validação de entrada (VineJS)
+  - Password hashing (Scrypt)
+  - Access Tokens stateful
+  - SQL injection prevention (Lucid ORM)
+  - XSS prevention (Vue escaping)
 
 ---
 
@@ -302,7 +337,7 @@ graph LR
 - **Docker Compose** >= 2.0
 - **Git** >= 2.30
 
-### Opcionais (para desenvolvimento local sem Docker)
+### Opcionais (desenvolvimento local)
 
 - **Node.js** >= 22.x
 - **PostgreSQL** >= 14.x
@@ -314,95 +349,49 @@ graph LR
 
 ### Opção 1: Docker (Recomendado)
 
-#### 1. Clone o repositório
 ```bash
+# 1. Clone o repositório
 git clone <repository-url>
 cd geek_joke
-```
 
-#### 2. Configure as variáveis de ambiente
-```bash
-# Arquivo .env já está configurado na raiz do projeto
-# Verifique se as credenciais estão corretas
-cat .env
-```
-
-#### 3. Gere certificados SSL locais (primeira vez)
-```bash
-# Instalar mkcert (se não tiver)
-# macOS
-brew install mkcert
-# Linux
-sudo apt install mkcert  # ou equivalente
-
-# Gerar certificados
-mkdir -p certs
-cd certs
+# 2. Gere certificados SSL (primeira vez)
+mkdir -p certs && cd certs
 mkcert localhost 127.0.0.1 ::1
 cd ..
-```
 
-#### 4. Suba os containers
-```bash
+# 3. Suba os containers
 docker-compose up --build
-```
 
-#### 5. Execute as migrations (primeira vez)
-```bash
-# Em outro terminal
+# 4. Execute as migrations (outro terminal)
 docker exec -it geekjoke-backend sh
-cd /app
-node ace migration:run
-node ace db:seed
+cd /app && node ace migration:run && node ace db:seed
 exit
+
+# 5. Acesse
+# Frontend: https://localhost
+# Backend: https://localhost/api
 ```
 
-#### 6. Acesse a aplicação
-```
-Frontend: https://localhost
-Backend API: https://localhost/api
-PostgreSQL: localhost:5432
-```
+### Opção 2: Desenvolvimento Local
 
-### Opção 2: Desenvolvimento Local (Sem Docker)
-
-#### 1. Configurar Backend
 ```bash
+# Backend
 cd backend
-
-# Instalar dependências
 npm install
-
-# Configurar .env
 cp .env.example .env
-# Editar .env com credenciais do PostgreSQL local
-
-# Rodar migrations
+# Editar .env com credenciais PostgreSQL
+node ace generate:key
 node ace migration:run
 node ace db:seed
-
-# Iniciar servidor
 node ace serve --watch
-```
 
-#### 2. Configurar Frontend
-```bash
+# Frontend (outro terminal)
 cd frontend
-
-# Instalar dependências
 npm install
-
-# Configurar variável de ambiente (criar .env.local)
 echo "VITE_API_URL=http://localhost:3333" > .env.local
-
-# Iniciar dev server
 npm run dev
-```
 
-#### 3. Acessar
-```
-Frontend: http://localhost:5173
-Backend: http://localhost:3333
+# Acesse: http://localhost:5173
 ```
 
 ---
@@ -413,60 +402,30 @@ Backend: http://localhost:3333
 geek_joke/
 ├── backend/                    # API REST AdonisJS
 │   ├── app/
-│   │   ├── controllers/       # Controladores HTTP
-│   │   ├── models/            # Models Lucid ORM
-│   │   ├── middleware/        # Middlewares customizados
-│   │   └── services/          # Serviços de negócio
+│   │   ├── controllers/       # HTTP Controllers
+│   │   ├── models/            # Lucid Models
+│   │   ├── middleware/        # Middlewares
+│   │   ├── services/          # Business Logic
+│   │   └── validators/        # VineJS Validators
 │   ├── database/
-│   │   ├── migrations/        # Migrations do banco
-│   │   └── seeders/           # Seeders de dados
-│   ├── start/
-│   │   ├── routes.ts          # Definição de rotas
-│   │   └── kernel.ts          # Configuração de middleware
-│   ├── config/                # Arquivos de configuração
-│   ├── tests/                 # Testes unitários e integração
-│   └── package.json
+│   │   ├── migrations/        # Database Migrations
+│   │   └── seeders/           # Data Seeders
+│   ├── config/                # Configurações
+│   └── tests/                 # Testes
 │
 ├── frontend/                   # SPA Vue.js
 │   ├── src/
-│   │   ├── components/        # Componentes reutilizáveis
-│   │   │   ├── LoginForm.vue
-│   │   │   ├── MoodView.vue
-│   │   │   └── JokeModal.vue
+│   │   ├── components/        # Componentes
 │   │   ├── views/             # Views de rota
-│   │   │   ├── LoginView.vue
-│   │   │   ├── InicialView.vue
-│   │   │   ├── TristeView.vue
-│   │   │   ├── PokerFaceView.vue
-│   │   │   └── FelizView.vue
 │   │   ├── stores/            # Pinia stores
-│   │   │   ├── auth.ts
-│   │   │   └── mood.ts
-│   │   ├── router/            # Configuração de rotas
-│   │   │   └── index.ts
-│   │   ├── services/          # Serviços de API
-│   │   │   └── api.ts
-│   │   ├── App.vue            # Componente raiz
-│   │   └── main.ts            # Entry point
-│   ├── public/                # Assets estáticos
-│   ├── tests/                 # Testes de componentes
-│   └── package.json
-│
-├── database/                   # Scripts SQL
-│   └── schema.sql             # Schema inicial
+│   │   ├── router/            # Configuração rotas
+│   │   └── services/          # API services
+│   └── public/                # Assets estáticos
 │
 ├── nginx/                      # Configurações Nginx
-│   └── conf.d/
-│       └── default.conf       # Virtual host config
-│
-├── certs/                      # Certificados SSL (não versionado)
-│   ├── localhost+1.pem
-│   └── localhost+1-key.pem
-│
-├── docker-compose.yml          # Orquestração Docker
-├── .env                        # Variáveis de ambiente
+├── certs/                      # Certificados SSL
+├── docker-compose.yml          # Orquestração
 ├── REQUISITOS.md              # Especificação completa
-├── TO_DO.md                   # Plano de implementação (DDD)
 └── README.md                  # Este arquivo
 ```
 
@@ -474,21 +433,21 @@ geek_joke/
 
 ## 🔑 Credenciais de Acesso
 
-### Usuário Padrão
+### Usuário Padrão (Seeder)
 
 ```
 Email:    cliente@incuca.com.br
 Senha:    seumamesapossuirtrespernaschamadasqualidadeprecobaixoevelocidadeelaseriacapenga
 ```
 
-### Banco de Dados (via .env)
+### Banco de Dados
 
 ```
 Host:     postgres (ou localhost se fora do Docker)
 Porta:    5432
-Usuário:  geekjoke_user
-Senha:    seumamesapossuirtrespernaschamadasqualidadeprecobaixoevelocidadeelaseriacapenga
 Database: geekjoke_db
+Usuário:  geekjoke_user
+Senha:    <conforme .env>
 ```
 
 ---
@@ -498,7 +457,7 @@ Database: geekjoke_db
 ### Autenticação
 
 #### `POST /auth/login`
-Autentica um usuário e retorna um token JWT.
+Autentica um usuário e retorna um Access Token.
 
 **Request:**
 ```json
@@ -511,52 +470,47 @@ Autentica um usuário e retorna um token JWT.
 **Response (200):**
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token": "oat_NjQuMT...YxNTM4",
   "user": {
     "id": 1,
-    "email": "cliente@incuca.com.br",
-    "created_at": "2025-11-04T10:00:00.000Z"
+    "email": "cliente@incuca.com.br"
   }
 }
 ```
 
-**Response (401):**
-```json
-{
-  "error": "Invalid credentials"
-}
-```
-
----
-
 #### `GET /auth/me`
-Retorna dados do usuário autenticado (requer token).
+Retorna dados do usuário autenticado.
 
-**Headers:**
-```
-Authorization: Bearer <token>
-```
+**Headers:** `Authorization: Bearer <token>`
 
 **Response (200):**
 ```json
 {
-  "id": 1,
-  "email": "cliente@incuca.com.br",
-  "created_at": "2025-11-04T10:00:00.000Z"
+  "user": {
+    "id": 1,
+    "email": "cliente@incuca.com.br"
+  }
 }
 ```
 
----
+#### `POST /auth/logout`
+Revoga o token atual.
+
+**Headers:** `Authorization: Bearer <token>`
+
+**Response (200):**
+```json
+{
+  "message": "Logged out successfully"
+}
+```
 
 ### Piadas
 
 #### `GET /jokes/random`
-Retorna uma piada aleatória da API Geek Joke (requer autenticação).
+Retorna uma piada aleatória (requer autenticação).
 
-**Headers:**
-```
-Authorization: Bearer <token>
-```
+**Headers:** `Authorization: Bearer <token>`
 
 **Response (200):**
 ```json
@@ -565,140 +519,74 @@ Authorization: Bearer <token>
 }
 ```
 
-**Response (401):**
-```json
-{
-  "error": "Unauthorized"
-}
-```
-
----
-
-## 📊 Roadmap
-
-Este projeto segue um roadmap dividido em fases, documentado detalhadamente em `TO_DO.md`.
-
-| Fase | Status | Descrição |
-|------|--------|-----------|
-| 0️⃣ | ✅ | Setup e Validação de Configurações |
-| 1️⃣ | ✅ | Backend - Estrutura Base AdonisJS |
-| 2️⃣ | ✅ | Backend - Autenticação JWT |
-| 3️⃣ | ✅ | Backend - Integração API Geek Joke |
-| 4️⃣ | ✅ | Frontend - Estrutura Base Vue.js |
-| 5️⃣ | ✅ | Frontend - Login e Autenticação |
-| 6️⃣ | ✅ | Frontend - Rotas de Humor |
-| 7️⃣ | ⏳ | Integração Frontend ↔ Backend (Pronto para teste) |
-| 8️⃣ | ❌ | Testes Unitários e Integração |
-| 9️⃣ | ⏳ | Documentação Final |
-
 ---
 
 ## 🧪 Testes
 
 ### Backend
+
 ```bash
 cd backend
+
+# Rodar todos os testes
 npm test
 
 # Com coverage
 npm test -- --coverage
 ```
 
-### Frontend
-```bash
-cd frontend
-npm test
-
-# Modo watch
-npm test -- --watch
-```
-
-### E2E (Futuro)
-```bash
-npm run test:e2e
-```
+**Testes implementados:**
+- ✅ Login (válido, inválido, sem credenciais)
+- ✅ Autenticação (/me, logout)
+- ✅ Piadas (autenticado, não autenticado)
 
 ---
 
 ## 🤝 Contribuindo
 
-Contribuições são bem-vindas! Este projeto segue **Documentation-Driven Development**, portanto:
+Este projeto segue **Documentation-Driven Development**:
 
-1. **Documente primeiro**: Crie/atualize documentação antes de codificar
-2. **Siga o TO_DO.md**: Verifique se sua feature está no roadmap
-3. **Fork e PR**: Faça um fork, crie uma branch, e abra um Pull Request
-4. **Testes obrigatórios**: Toda nova feature deve ter testes
-5. **Code Review**: Aguarde revisão antes do merge
-
-### Processo de Contribuição
+1. **Documente primeiro** antes de codificar
+2. **Siga o TO_DO.md** para verificar roadmap
+3. **Adicione testes** para toda nova feature
+4. **Use Conventional Commits**
 
 ```bash
-# 1. Fork o projeto
-# 2. Clone seu fork
-git clone <seu-fork-url>
-
-# 3. Crie uma branch
 git checkout -b feature/minha-feature
-
-# 4. Documente a feature em TO_DO.md
-# 5. Implemente seguindo a documentação
-# 6. Adicione testes
-# 7. Commit seguindo conventional commits
-git commit -m "feat: adiciona feature X conforme TO_DO.md fase Y"
-
-# 8. Push e abra PR
+# Documente, implemente, teste
+git commit -m "feat: adiciona feature X"
 git push origin feature/minha-feature
-```
-
-### Conventional Commits
-
-```
-feat: nova funcionalidade
-fix: correção de bug
-docs: atualização de documentação
-style: formatação de código
-refactor: refatoração
-test: adição de testes
-chore: tarefas de build/config
 ```
 
 ---
 
 ## 📄 Licença
 
-Este projeto é licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+MIT License - veja arquivo `LICENSE` para detalhes.
 
 ---
 
 ## 👥 Autores
 
-- **Desenvolvedor Principal**: Jesse
-- **Assistente de Desenvolvimento**: Claude Sonnet 4.5 (Anthropic)
+- **Desenvolvedor**: Jesse Santos
+- **Assistente IA**: Claude Sonnet 4.5 (Anthropic)
 - **Metodologia**: Documentation-Driven Development
 
 ---
 
 ## 🙏 Agradecimentos
 
-- [Geek Joke API](https://github.com/sameerkumar18/geek-joke-api) - API de piadas geek
-- [AdonisJS](https://adonisjs.com) - Framework backend robusto
-- [Vue.js](https://vuejs.org) - Framework frontend reativo
-- [Vuetify](https://vuetifyjs.com) - Componentes Material Design
+- [Geek Joke API](https://github.com/sameerkumar18/geek-joke-api)
+- [AdonisJS](https://adonisjs.com)
+- [Vue.js](https://vuejs.org)
+- [PostgreSQL](https://www.postgresql.org)
 - Comunidade open-source
-
----
-
-## 📞 Suporte
-
-- **Documentação Técnica**: Veja `REQUISITOS.md` e `TO_DO.md`
-- **Issues**: Use o sistema de issues do GitHub
-- **Discussões**: Use GitHub Discussions para dúvidas
 
 ---
 
 ## 📈 Status do Projeto
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Status](https://img.shields.io/badge/status-completo-green)
 ![Metodologia](https://img.shields.io/badge/metodologia-Documentation--Driven%20Development-blue)
 ![Node](https://img.shields.io/badge/node-%3E%3D22.x-green)
 ![Vue](https://img.shields.io/badge/vue-3.x-brightgreen)
@@ -706,4 +594,4 @@ Este projeto é licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mai
 
 ---
 
-**Desenvolvido com ❤️ usando Documentation-Driven Development**
+**Desenvolvido com ❤️ usando Documentation-Driven Development + Claude Sonnet 4.5**
