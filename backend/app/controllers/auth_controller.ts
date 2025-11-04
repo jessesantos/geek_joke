@@ -1,6 +1,8 @@
 import User from '#models/user'
 import { HttpContext } from '@adonisjs/core/http'
 import hash from '@adonisjs/core/services/hash'
+import { loginValidator } from '#validators/login_validator'
+import logger from '@adonisjs/core/services/logger'
 
 export default class AuthController {
   /**
@@ -9,15 +11,8 @@ export default class AuthController {
    */
   async login({ request, response }: HttpContext) {
     try {
-      // Validate request body
-      const { email, password } = request.only(['email', 'password'])
-
-      if (!email || !password) {
-        return response.badRequest({
-          error: 'Validation failed',
-          message: 'Email and password are required',
-        })
-      }
+      // Validate request body using VineJS validator
+      const { email, password } = await request.validateUsing(loginValidator)
 
       // Find user by email
       const user = await User.findBy('email', email)
@@ -52,7 +47,7 @@ export default class AuthController {
         },
       })
     } catch (error) {
-      console.error('Login error:', error)
+      logger.error('Login error:', error)
       return response.internalServerError({
         error: 'Login failed',
         message: error instanceof Error ? error.message : 'An unknown error occurred',
@@ -84,7 +79,7 @@ export default class AuthController {
         },
       })
     } catch (error) {
-      console.error('Auth me error:', error)
+      logger.error('Auth me error:', error)
       return response.internalServerError({
         error: 'Failed to retrieve user data',
         message: error instanceof Error ? error.message : 'An unknown error occurred',
@@ -118,7 +113,7 @@ export default class AuthController {
         message: 'Logged out successfully',
       })
     } catch (error) {
-      console.error('Logout error:', error)
+      logger.error('Logout error:', error)
       return response.internalServerError({
         error: 'Logout failed',
         message: error instanceof Error ? error.message : 'An unknown error occurred',
