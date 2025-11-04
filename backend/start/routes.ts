@@ -10,6 +10,7 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 
+const AuthController = () => import('#controllers/auth_controller')
 const JokesController = () => import('#controllers/jokes_controller')
 
 router.get('/', async () => {
@@ -17,6 +18,20 @@ router.get('/', async () => {
     hello: 'world',
   }
 })
+
+/**
+ * Rotas de Autenticação
+ */
+router
+  .group(() => {
+    // Rota pública de login
+    router.post('/login', [AuthController, 'login'])
+
+    // Rotas protegidas
+    router.get('/me', [AuthController, 'me']).use(middleware.auth())
+    router.post('/logout', [AuthController, 'logout']).use(middleware.auth())
+  })
+  .prefix('/auth')
 
 /**
  * Rotas de Jokes (protegidas por autenticação)
