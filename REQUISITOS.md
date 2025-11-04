@@ -147,8 +147,8 @@ docker-compose up
 
 ### Serviços
 
-- **frontend** → Vue.js app rodando em `http://localhost:8080`
-- **backend** → API AdonisJS em `http://localhost:3333`
+- **frontend** → Vue.js app rodando em `https://localhost`
+- **backend** → API AdonisJS em `https://localhost:3333`
 - **database** → PostgreSQL configurado via variáveis de ambiente
 
 ---
