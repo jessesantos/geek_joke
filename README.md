@@ -581,9 +581,9 @@ Este projeto segue um roadmap dividido em fases, documentado detalhadamente em `
 | Fase | Status | Descrição |
 |------|--------|-----------|
 | 0️⃣ | ✅ | Setup e Validação de Configurações |
-| 1️⃣ | 🔄 | Backend - Estrutura Base AdonisJS |
+| 1️⃣ | ✅ | Backend - Estrutura Base AdonisJS |
 | 2️⃣ | ⏳ | Backend - Autenticação JWT |
-| 3️⃣ | ⏳ | Backend - Integração API Geek Joke |
+| 3️⃣ | ✅ | Backend - Integração API Geek Joke |
 | 4️⃣ | ⏳ | Frontend - Estrutura Base Vue.js |
 | 5️⃣ | ⏳ | Frontend - Login e Autenticação |
 | 6️⃣ | ⏳ | Frontend - Rotas de Humor |
