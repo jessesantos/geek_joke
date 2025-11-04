@@ -1,6 +1,6 @@
 ![Geek Joke](https://codde.dev/gj/logo-gj.png)
 
-# 🧩 Geek Joke API - Fullstack Application
+# Geek Joke API - Fullstack Application
 
 > **Aplicação Fullstack** desenvolvida com **Vue.js** e **AdonisJS** que consome a [API Geek Joke](https://geek-jokes.sameerkumar.website/api) para entreter desenvolvedores com piadas geek através de uma interface interativa baseada em estados de humor.
 
@@ -571,7 +571,6 @@ MIT License - veja arquivo `LICENSE` para detalhes.
 ## 👥 Autores
 
 - **Desenvolvedor**: Jesse Santos
-- **Assistente IA**: Claude Sonnet 4.5 (Anthropic)
 - **Metodologia**: Documentation-Driven Development
 
 ---
@@ -596,4 +595,4 @@ MIT License - veja arquivo `LICENSE` para detalhes.
 
 ---
 
-**Desenvolvido com ❤️ usando Documentation-Driven Development + Claude Sonnet 4.5**
+**Desenvolvido com ❤️ usando Documentation-Driven Development**
