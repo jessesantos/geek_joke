@@ -15,17 +15,17 @@ export const useMoodStore = defineStore('mood', {
         'poker-face': '🫣',
         feliz: '😄'
       }
-      return emojiMap[state.currentMood] || '😐'
+      return emojiMap[state.currentMood] || '❓'
     },
 
     getCurrentMoodText: (state) => {
       const textMap = {
-        inicial: 'Inicial',
-        triste: 'Triste',
+        inicial: 'Estado Inicial',
+        triste: 'Estado Triste',
         'poker-face': 'Poker Face',
-        feliz: 'Feliz'
+        feliz: 'Estado Feliz'
       }
-      return textMap[state.currentMood] || 'Inicial'
+      return textMap[state.currentMood] || 'Humor Desconhecido'
     }
   },
 
