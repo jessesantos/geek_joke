@@ -1,5 +1,8 @@
 <template>
   <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
+    <div class="text-center mb-6">
+      <img src="@/assets/images/logo-gj.png" alt="Geek Joke Logo" class="logo" />
+    </div>
     <div class="text-h5 text-center mb-6">Geek Joke</div>
     <div class="text-subtitle-1 text-medium-emphasis text-center mb-4">
       Entre para acessar piadas geek
@@ -119,5 +122,10 @@ const handleSubmit = async () => {
 <style scoped>
 .v-card {
   border: thin solid rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
 }
 </style>
