@@ -66,27 +66,29 @@ Este projeto foi desenvolvido seguindo a metodologia **Documentation-Driven Deve
 
 #### 🚀 Vantagens do Documentation-Driven Development
 
-| Vantagem | Descrição |
-|----------|-----------|
-| 🎯 **Clareza de Requisitos** | Requisitos definidos antes de codificar reduzem ambiguidade e retrabalho |
-| 🤝 **Melhor Comunicação** | Documentação clara facilita alinhamento entre stakeholders técnicos e não-técnicos |
-| ⚡ **Menos Retrabalho** | Especificações detalhadas evitam implementações incorretas e bugs conceituais |
-| 📖 **Documentação Atualizada** | A documentação é parte do processo, não uma tarefa posterior negligenciada |
-| 🎓 **Onboarding Facilitado** | Novos desenvolvedores entendem o projeto rapidamente sem depender de tribal knowledge |
-| 🤖 **Otimizado para IA/LLM** | LLMs como Claude podem implementar código seguindo especificações detalhadas com alta precisão |
-| 🧪 **Testabilidade** | Requisitos claros facilitam criação de testes abrangentes e significativos |
-| 🏗️ **Arquitetura Consistente** | Decisões arquiteturais são documentadas, justificadas e seguidas consistentemente |
-| 📊 **Rastreabilidade** | Fácil rastrear código para requisito e vice-versa, essencial para auditorias |
-| 💰 **Redução de Custos** | Menor custo de manutenção a longo prazo devido à clareza e consistência |
+| Vantagem                       | Descrição                                                                                      |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| 🎯 **Clareza de Requisitos**   | Requisitos definidos antes de codificar reduzem ambiguidade e retrabalho                       |
+| 🤝 **Melhor Comunicação**      | Documentação clara facilita alinhamento entre stakeholders técnicos e não-técnicos             |
+| ⚡ **Menos Retrabalho**        | Especificações detalhadas evitam implementações incorretas e bugs conceituais                  |
+| 📖 **Documentação Atualizada** | A documentação é parte do processo, não uma tarefa posterior negligenciada                     |
+| 🎓 **Onboarding Facilitado**   | Novos desenvolvedores entendem o projeto rapidamente sem depender de tribal knowledge          |
+| 🤖 **Otimizado para IA/LLM**   | LLMs como Claude podem implementar código seguindo especificações detalhadas com alta precisão |
+| 🧪 **Testabilidade**           | Requisitos claros facilitam criação de testes abrangentes e significativos                     |
+| 🏗️ **Arquitetura Consistente** | Decisões arquiteturais são documentadas, justificadas e seguidas consistentemente              |
+| 📊 **Rastreabilidade**         | Fácil rastrear código para requisito e vice-versa, essencial para auditorias                   |
+| 💰 **Redução de Custos**       | Menor custo de manutenção a longo prazo devido à clareza e consistência                        |
 
 #### 💡 Por que DDD é superior ao desenvolvimento tradicional?
 
 **Desenvolvimento tradicional:**
+
 ```
 Código → Documentação (se sobrar tempo) → Manutenção difícil
 ```
 
 **Documentation-Driven Development:**
+
 ```
 Requisitos → Design → Documentação → Código → Validação → Manutenção facilitada
 ```
@@ -109,95 +111,54 @@ Documentation-Driven Development é **especialmente poderoso quando combinado co
 
 ### Backend
 
-| Tecnologia | Versão | Função | Por que escolhemos? |
-|-----------|---------|---------|---------------------|
-| **Node.js** | 22.x | Runtime JavaScript | Performance excepcional, ecossistema maduro, TypeScript nativo |
-| **AdonisJS** | 6.x | Framework MVC | Framework completo, ORM integrado, segurança built-in |
-| **Lucid ORM** | 20.x | Object-Relational Mapping | Active Record elegante, migrations robustas |
-| **PostgreSQL** | 18.x | Banco de dados relacional | ACID completo, performance superior, extensível |
-| **Access Tokens** | - | Autenticação stateful | Mais seguro que JWT: revogação imediata, auditoria |
-| **VineJS** | - | Validação de dados | Type-safe, nativo do AdonisJS |
-| **Axios** | 1.x | Cliente HTTP | API clara, interceptors, timeout |
+| Tecnologia        | Versão | Função                    | Por que escolhemos?                                            |
+| ----------------- | ------ | ------------------------- | -------------------------------------------------------------- |
+| **Node.js**       | 22.x   | Runtime JavaScript        | Performance excepcional, ecossistema maduro, TypeScript nativo |
+| **AdonisJS**      | 6.x    | Framework MVC             | Framework completo, ORM integrado, segurança built-in          |
+| **Lucid ORM**     | 20.x   | Object-Relational Mapping | Active Record elegante, migrations robustas                    |
+| **PostgreSQL**    | 18.x   | Banco de dados relacional | ACID completo, performance superior, extensível                |
+| **Access Tokens** | -      | Autenticação stateful     | Mais seguro que JWT: revogação imediata, auditoria             |
+| **VineJS**        | -      | Validação de dados        | Type-safe, nativo do AdonisJS                                  |
+| **Axios**         | 1.x    | Cliente HTTP              | API clara, interceptors, timeout                               |
 
 ### Frontend
 
-| Tecnologia | Versão | Função | Por que escolhemos? |
-|-----------|---------|---------|---------------------|
-| **Vue.js** | 3.x | Framework JavaScript | Composition API moderna, performance, TypeScript |
-| **Vite** | 5.x | Build tool | HMR instantâneo, build otimizado, DX excepcional |
-| **Pinia** | 2.x | State management | API simples, TypeScript, substituto oficial do Vuex |
-| **Vue Router** | 4.x | Roteamento SPA | Guards de navegação, lazy loading |
-| **Vuetify** | 3.x | UI Component Library | Material Design 3, componentes prontos |
-| **Axios** | 1.x | Cliente HTTP | Interceptors para token, erro centralizado |
+| Tecnologia     | Versão | Função               | Por que escolhemos?                                 |
+| -------------- | ------ | -------------------- | --------------------------------------------------- |
+| **Vue.js**     | 3.x    | Framework JavaScript | Composition API moderna, performance, TypeScript    |
+| **Vite**       | 5.x    | Build tool           | HMR instantâneo, build otimizado, DX excepcional    |
+| **Pinia**      | 2.x    | State management     | API simples, TypeScript, substituto oficial do Vuex |
+| **Vue Router** | 4.x    | Roteamento SPA       | Guards de navegação, lazy loading                   |
+| **Vuetify**    | 3.x    | UI Component Library | Material Design 3, componentes prontos              |
+| **Axios**      | 1.x    | Cliente HTTP         | Interceptors para token, erro centralizado          |
 
 ### DevOps & Infraestrutura
 
-| Tecnologia | Versão | Função | Por que escolhemos? |
-|-----------|---------|---------|---------------------|
-| **Docker** | 24.x | Containerização | Ambiente consistente, portabilidade, CI/CD |
-| **Docker Compose** | 2.x | Orquestração | Definição declarativa, networks isoladas |
-| **Nginx** | latest | Reverse proxy | Performance, SSL termination, load balancing |
-| **mkcert** | - | Certificados SSL locais | HTTPS local sem warnings |
+| Tecnologia         | Versão | Função                  | Por que escolhemos?                          |
+| ------------------ | ------ | ----------------------- | -------------------------------------------- |
+| **Docker**         | 24.x   | Containerização         | Ambiente consistente, portabilidade, CI/CD   |
+| **Docker Compose** | 2.x    | Orquestração            | Definição declarativa, networks isoladas     |
+| **Nginx**          | latest | Reverse proxy           | Performance, SSL termination, load balancing |
+| **mkcert**         | -      | Certificados SSL locais | HTTPS local sem warnings                     |
 
 ---
 
 ## 🏛️ Defesa da Arquitetura
 
-### Por que AdonisJS ao invés de Express/NestJS?
-
-**AdonisJS vs Express:**
-- ✅ Framework completo vs biblioteca minimalista
-- ✅ ORM integrado (Lucid) vs precisa adicionar Sequelize/TypeORM
-- ✅ Autenticação nativa vs implementar do zero
-- ✅ Validação nativa (VineJS) vs adicionar Joi/Yup
-- ✅ TypeScript first vs adicionar tipos manualmente
-
-**AdonisJS vs NestJS:**
-- ✅ Curva de aprendizado menor vs complexidade de decorators
-- ✅ Menos boilerplate vs código verbose
-- ✅ ORM mais simples (Lucid) vs TypeORM complexo
-- ✅ Filosofia Rails-like vs Angular-like
-
-### Por que Vue.js ao invés de React/Angular?
-
-**Vue.js vs React:**
-- ✅ Curva de aprendizado menor - HTML, CSS, JS separados
-- ✅ Composition API mais intuitiva que React Hooks
-- ✅ Reatividade nativa vs useState/useEffect manual
-- ✅ Single File Components vs JSX misturado
-
-**Vue.js vs Angular:**
-- ✅ Mais leve (40KB) vs Angular (500KB+)
-- ✅ Setup mais simples vs configuração complexa
-- ✅ Vite build mais rápido que Angular CLI
-
-### Por que PostgreSQL ao invés de MySQL/MongoDB?
-
-**PostgreSQL vs MySQL:**
-- ✅ ACID completo e confiável
-- ✅ Tipos de dados avançados (JSON, Arrays, HSTORE)
-- ✅ Window functions e CTEs mais poderosos
-- ✅ Licença open-source verdadeira (não Oracle)
-
-**PostgreSQL vs MongoDB:**
-- ✅ ACID transactions vs consistência eventual
-- ✅ Schema validation vs schema-less problemático
-- ✅ Joins eficientes vs múltiplas queries
-- ✅ Suporte JSON nativo - melhor dos dois mundos
-
 ### Por que Access Tokens ao invés de JWT Stateless?
 
-| Aspecto | Access Tokens (Stateful) | JWT Stateless |
-|---------|-------------------------|---------------|
-| **Revogação** | ✅ Imediata (deleta do banco) | ❌ Impossível até expirar |
-| **Auditoria** | ✅ Last used, IP, device | ❌ Sem rastreamento |
-| **Tamanho** | ✅ Pequeno (token ID) | ❌ Grande (payload codificado) |
-| **Sessões ativas** | ✅ Listagem no banco | ❌ Impossível listar |
-| **Segurança** | ✅ Compromisso isolado | ⚠️ Compromisso até expirar |
+| Aspecto            | Access Tokens (Stateful)      | JWT Stateless                  |
+| ------------------ | ----------------------------- | ------------------------------ |
+| **Revogação**      | ✅ Imediata (deleta do banco) | ❌ Impossível até expirar      |
+| **Auditoria**      | ✅ Last used, IP, device      | ❌ Sem rastreamento            |
+| **Tamanho**        | ✅ Pequeno (token ID)         | ❌ Grande (payload codificado) |
+| **Sessões ativas** | ✅ Listagem no banco          | ❌ Impossível listar           |
+| **Segurança**      | ✅ Compromisso isolado        | ⚠️ Compromisso até expirar     |
 
-**Nossa escolha**: Access Tokens
+**Minha escolha**: Access Tokens
 
 **Justificativa**:
+
 - Segurança > Escalabilidade prematura
 - Auditoria é crítica (compliance, LGPD)
 - Revogação imediata é requisito (logout, compromisso)
@@ -268,6 +229,7 @@ Documentation-Driven Development é **especialmente poderoso quando combinado co
 ```
 
 **Vantagens deste fluxo:**
+
 - ✅ Revogação instantânea (delete token do banco)
 - ✅ Auditoria completa (last_used_at, expires_at)
 - ✅ Gerenciamento de sessões ativas
@@ -276,6 +238,7 @@ Documentation-Driven Development é **especialmente poderoso quando combinado co
 ### Padrões de Arquitetura Aplicados
 
 #### Backend (AdonisJS)
+
 - **MVC (Model-View-Controller)**: Separação clara de responsabilidades
 - **Service Layer**: Lógica de negócio isolada (GeekJokeService)
 - **Repository Pattern**: Lucid ORM abstrai acesso a dados
@@ -284,6 +247,7 @@ Documentation-Driven Development é **especialmente poderoso quando combinado co
 - **Dependency Injection**: AdonisJS IoC container
 
 #### Frontend (Vue.js)
+
 - **MVVM (Model-View-ViewModel)**: Reatividade Vue
 - **Store Pattern**: Pinia para estado global (auth, mood)
 - **Component Pattern**: Componentes reutilizáveis
@@ -297,6 +261,7 @@ Documentation-Driven Development é **especialmente poderoso quando combinado co
 ### Implementadas
 
 - ✅ **Autenticação Stateful**
+
   - Login com email e senha
   - Validação de formulário (frontend + backend)
   - Persistência de sessão (localStorage)
@@ -304,17 +269,20 @@ Documentation-Driven Development é **especialmente poderoso quando combinado co
   - Logout com revogação de token
 
 - ✅ **Estados de Humor Interativos**
+
   - `/inicial` - Estado neutro 😐
   - `/triste` - Estado triste 😢
   - `/poker-face` - Estado curioso 🫣 (exibe piada)
   - `/feliz` - Estado feliz 😄
 
 - ✅ **Sistema de Piadas**
+
   - Consumo da API Geek Joke
   - Modal interativa
   - Tratamento de erros
 
 - ✅ **Infraestrutura**
+
   - Docker e Docker Compose
   - Nginx com SSL/TLS (HTTPS)
   - PostgreSQL com persistência
@@ -364,7 +332,7 @@ cd ..
 # 3. Suba os containers
 docker-compose up --build
 
-# 4. Execute as migrations (outro terminal)
+# 4. Execute as migrations (outro terminal - opcional, pois o schema já foi populado na fase anterior)
 docker exec -it geekjoke-backend sh
 cd /app && node ace migration:run && node ace db:seed
 exit
@@ -447,8 +415,8 @@ Senha:    seumamesapossuirtrespernaschamadasqualidadeprecobaixoevelocidadeelaser
 ```
 Host:     postgres (ou localhost se fora do Docker)
 Porta:    5432
-Database: geekjoke_db
-Usuário:  geekjoke_user
+Database: geekjoke
+Usuário:  geekjoke
 Senha:    <conforme .env>
 ```
 
@@ -459,9 +427,11 @@ Senha:    <conforme .env>
 ### Autenticação
 
 #### `POST /auth/login`
+
 Autentica um usuário e retorna um Access Token.
 
 **Request:**
+
 ```json
 {
   "email": "cliente@incuca.com.br",
@@ -470,6 +440,7 @@ Autentica um usuário e retorna um Access Token.
 ```
 
 **Response (200):**
+
 ```json
 {
   "token": "oat_NjQuMT...YxNTM4",
@@ -481,11 +452,13 @@ Autentica um usuário e retorna um Access Token.
 ```
 
 #### `GET /auth/me`
+
 Retorna dados do usuário autenticado.
 
 **Headers:** `Authorization: Bearer <token>`
 
 **Response (200):**
+
 ```json
 {
   "user": {
@@ -496,11 +469,13 @@ Retorna dados do usuário autenticado.
 ```
 
 #### `POST /auth/logout`
+
 Revoga o token atual.
 
 **Headers:** `Authorization: Bearer <token>`
 
 **Response (200):**
+
 ```json
 {
   "message": "Logged out successfully"
@@ -510,11 +485,13 @@ Revoga o token atual.
 ### Piadas
 
 #### `GET /jokes/random`
+
 Retorna uma piada aleatória (requer autenticação).
 
 **Headers:** `Authorization: Bearer <token>`
 
 **Response (200):**
+
 ```json
 {
   "joke": "Why do programmers prefer dark mode? Because light attracts bugs!"
@@ -538,6 +515,7 @@ npm test -- --coverage
 ```
 
 **Testes implementados:**
+
 - ✅ Login (válido, inválido, sem credenciais)
 - ✅ Autenticação (/me, logout)
 - ✅ Piadas (autenticado, não autenticado)
