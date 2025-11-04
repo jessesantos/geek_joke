@@ -1,3 +1,5 @@
+![Geek Joke](https://codde.dev/gj/logo-gj.png)
+
 # 🧩 Geek Joke API - Fullstack Application
 
 > **Aplicação Fullstack** desenvolvida com **Vue.js** e **AdonisJS** que consome a [API Geek Joke](https://geek-jokes.sameerkumar.website/api) para entreter desenvolvedores com piadas geek através de uma interface interativa baseada em estados de humor.
