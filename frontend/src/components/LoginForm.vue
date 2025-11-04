@@ -1,6 +1,15 @@
 <template>
   <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-    <div class="text-h5 text-center mb-6">Geek Joke</div>
+    <!-- Logo Geek Joke -->
+    <div class="text-center mb-6">
+      <v-img
+        :src="logoUrl"
+        alt="Geek Joke Logo"
+        max-width="200"
+        class="mx-auto"
+      />
+    </div>
+
     <div class="text-subtitle-1 text-medium-emphasis text-center mb-4">
       Entre para acessar piadas geek
     </div>
@@ -66,6 +75,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import logoUrl from '@/assets/images/logo-gj.png'
 
 const router = useRouter()
 const authStore = useAuthStore()
