@@ -1,9 +1,12 @@
 <template>
   <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
     <div class="text-center mb-6">
-      <img src="@/assets/images/logo-gj.png" alt="Geek Joke Logo" class="logo" />
+      <img
+        src="@/assets/images/logo-gj.png"
+        alt="Geek Joke Logo"
+        class="logo"
+      />
     </div>
-    <div class="text-h5 text-center mb-6">Geek Joke</div>
     <div class="text-subtitle-1 text-medium-emphasis text-center mb-4">
       Entre para acessar piadas geek
     </div>
@@ -22,7 +25,9 @@
         @input="errorMessage = ''"
       />
 
-      <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+      <div
+        class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between"
+      >
         Senha
       </div>
 
@@ -66,57 +71,57 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 
-const router = useRouter()
-const authStore = useAuthStore()
+const router = useRouter();
+const authStore = useAuthStore();
 
-const form = ref(null)
-const email = ref('')
-const password = ref('')
-const visible = ref(false)
-const loading = ref(false)
-const errorMessage = ref('')
+const form = ref(null);
+const email = ref('');
+const password = ref('');
+const visible = ref(false);
+const loading = ref(false);
+const errorMessage = ref('');
 
 // Regras de validação
 const emailRules = [
   (v) => !!v || 'Email é obrigatório',
-  (v) => /.+@.+\..+/.test(v) || 'Email deve ser válido'
-]
+  (v) => /.+@.+\..+/.test(v) || 'Email deve ser válido',
+];
 
 const passwordRules = [
   (v) => !!v || 'Senha é obrigatória',
-  (v) => v.length >= 8 || 'Senha deve ter no mínimo 8 caracteres'
-]
+  (v) => v.length >= 8 || 'Senha deve ter no mínimo 8 caracteres',
+];
 
 const handleSubmit = async () => {
   // Validar formulário
-  const { valid } = await form.value.validate()
+  const { valid } = await form.value.validate();
 
   if (!valid) {
-    return
+    return;
   }
 
-  loading.value = true
-  errorMessage.value = ''
+  loading.value = true;
+  errorMessage.value = '';
 
   try {
-    const result = await authStore.login(email.value, password.value)
+    const result = await authStore.login(email.value, password.value);
 
     if (result.success) {
       // Redirecionar para página inicial
-      router.push({ name: 'inicial' })
+      router.push({ name: 'inicial' });
     } else {
-      errorMessage.value = result.message || 'Erro ao fazer login'
+      errorMessage.value = result.message || 'Erro ao fazer login';
     }
   } catch (error) {
-    errorMessage.value = 'Erro ao conectar com o servidor'
+    errorMessage.value = 'Erro ao conectar com o servidor';
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 </script>
 
 <style scoped>
